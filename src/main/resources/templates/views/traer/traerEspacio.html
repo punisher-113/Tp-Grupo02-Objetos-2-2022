@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<htm>
+	<html xmlns:th="http://www.thymeleaf.org">
+
+	<head th:replace="plantilla/template :: head">
+	</head>
+
+
+	<body class="body-buscar">
+
+		<header th:replace="plantilla/template :: header"> </header>
+		<br>
+		<h3 style="color: rgb(192, 192, 192);">Tradicional:</h3>
+
+		<table class="table" id="dataTable" width="100%" cellspacing="0">
+			<thead>
+				<tr class="table-info">
+					<th>ID del espacio</th>
+					<th>Fecha:</th>
+					<th>Turno</th>
+					<th>Libre?</th>
+					<th>Aula:</th>
+					<th sec:authorize="hasRole('ROLE_ADMIN_GENERAL')">EditarLibre:</th>
+				</tr>
+			</thead>
+			<tbody bgcolor="grey">
+				<td><span th:text="${espacio.id}" /></td>
+				<td><span th:text="${espacio.fecha}" /></td>
+				<td><span th:text="${espacio.turno}" /></td>
+				<td th:text="${espacio.libre} ? 'SI' : 'NO'" />
+				</td>
+				<td><span th:text="${espacio.aula.numero}" /></td>
+
+				<!--Boton Editar-->
+				<td sec:authorize="hasRole('ROLE_ADMIN_GENERAL')"><a class="btn btn-success btn-sm"
+						th:href="@{/espacio/}+${espacio.id}" sec:authorize="hasRole('ROLE_ADMIN_GENERAL')"
+						role="button">EditarLibre</a></td>
+
+			</tbody>
+
+
+			<br>
+		</table>
+
+
+
+		<div>
+			<a class="btn btn-primary" th:href="@{/espacio/buscarespacio}">Volver</a>
+		</div>
+
+
+
+		<footer th:replace="plantilla/template :: footer"> </footer>
+
+
+	</body>
+
+	</html>

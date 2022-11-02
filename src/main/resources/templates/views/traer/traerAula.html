@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<htm>
+	<html xmlns:th="http://www.thymeleaf.org">
+
+	<head th:replace="plantilla/template :: head">
+	</head>
+
+
+	<body class="body-buscar">
+
+		<header th:replace="plantilla/template :: header"> </header>
+		<br>
+		<h3 style="color: rgb(192, 192, 192);">Tradicional:</h3>
+
+
+		<table class="table" id="dataTable" width="100%" cellspacing="0">
+			<thead>
+				<tr class="table-info">
+					<th>Nº Aula</th>
+					<th>Edificio</th>
+					<th>Cantidad de bancos</th>
+					<th>Pizarron</th>
+					<th>Proyector</th>
+
+				</tr>
+			</thead>
+			<tbody bgcolor="grey">
+				<td><span th:text="${tradicional.numero}" /></td>
+				<td><span th:text="${tradicional.edificio.edificio}" /></td>
+				<td><span th:text="${tradicional.cantBancos}" /></td>
+				<td><span th:text="${tradicional.pizarron}" /></td>
+				<td><span th:text="${tradicional.tieneProyector}" /></td>
+
+			</tbody>
+
+			<br>
+		</table>
+
+		<h3 style="color: rgb(192, 192, 192);">Laboratorio</h3>
+		<table class="table" id="dataTable" width="100%" cellspacing="0">
+			<thead>
+				<tr class="table-info">
+					<th>Nº Aula</th>
+					<th>Edificio</th>
+					<th>Cantidad de PC</th>
+					<th>Cantidad de sillas</th>
+
+
+
+				</tr>
+			</thead>
+			<tbody bgcolor="grey">
+
+				<td><span th:text="${laboratorio.numero}" /></td>
+				<td><span th:text="${laboratorio.edificio.edificio}" /></td>
+				<td><span th:text="${laboratorio.cantPC}" /></td>
+				<td><span th:text="${laboratorio.cantSillas}" /></td>
+
+
+
+			</tbody>
+		</table>
+
+		<div>
+			<a class="btn btn-primary" th:href="@{/views/traer/buscar}">Volver</a>
+		</div>
+
+
+
+		<footer th:replace="plantilla/template :: footer"> </footer>
+
+
+	</body>
+
+	</html>

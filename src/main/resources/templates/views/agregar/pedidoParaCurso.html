@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<htm>
+	<html xmlns:th="http://www.thymeleaf.org">
+
+	<head th:replace="plantilla/template :: head">
+	</head>
+
+
+	<body class="body-generic">
+
+
+		<header th:replace="plantilla/template :: header"> </header>
+
+
+		<!--Formulario-->
+		<div class="container">
+			<div class="card bg-light">
+				<div class="card-header bg-dark text-white"></div>
+				<div class="card-body">
+					<form th:action="@{/pedido/pedidoenviadocurso}" th:object="${cursoPedido}" method="post">
+						<input type="hidden" th:field="*{id}">
+
+						<div class="form-group row">
+
+							<label class="col-md-2" for="fecha">Fecha:</label>
+							<input type="date" th:field="*{fecha}" class="form-control form-control-sm col-md-6"
+								id="fecha" >
+							
+						</div>
+						
+						<div class="col-md-6">
+                            <div class="form-group">
+                                <label class="medium mb-1" for="inputFecha">Turno:</label>
+                            <br>
+                            <input type="radio"th:field="*{turno}" value="M">Mañana
+                            <input type="radio" class="librefalse" th:field="*{turno}" value="T">Tarde			
+                            </div>					
+                        </div>
+						
+						<div class="col-md-6">
+                            <div class="form-group">
+                                <label class="medium mb-1" for="inputFecha">Tipo de aula:</label>
+                            <br>
+                            <input type="radio" th:field="*{aula}" value="Laboratorio">Laboratorio
+                            <input type="radio" class="librefalse" th:field="*{aula}"  value="Tradicional">Tradicional			
+                            </div>					
+                        </div>
+						
+						<div class="form-group row">
+
+							<label class="col-md-2" for="cantestudiantes">Cantidad de estudiantes:</label>
+							<input type="text" th:field="*{cantEstudiantes}" class="form-control form-control-sm col-md-6"
+								id="cantestudiantes" >
+							
+						</div>
+
+						<div class="form-group row">
+							<label class="col-md-2" for="role">Materia:</label>
+							<select type="text"  th:field="*{materia}" class="form-control form-control-sm col-md-6"
+								id="nombre">
+
+								<option th:each="m:${listaMateria}" th:value="${m.id}" >
+                                    <td><span th:text="${m.codMateria}" /></td>
+                                    <td><span th:text="${m.materia}" /></td>
+								</option>
+
+							</select>
+
+						</div>
+						
+
+						<div class="form-group row">
+
+							<label class="col-md-2" for="carrera">Carrera:</label>
+							<input type="text" th:field="*{carrera}" class="form-control form-control-sm col-md-6"
+								id="observaciones" >
+							
+						</div>
+
+						<div class="col-md-6">
+                            <div class="form-group">
+                                <label class="medium mb-1" for="inputFecha">¿Proyector?</label>
+                            <br>
+                            <input type="radio"th:field="*{proyector}" value="true">SI
+                            <input type="radio" class="librefalse" th:field="*{proyector}" value="false">NO			
+                            </div>					
+                        </div>
+						
+                        <div class="form-group row">
+
+							<label class="col-md-2" for="observaciones">Observaciones:</label>
+							<input type="text" th:field="*{observaciones}" class="form-control form-control-sm col-md-6"
+								id="observaciones" >
+							
+						</div>
+                        
+						<div class="card-footer bg-dark">
+							<input type="submit" class="btn btn-primary btn-sm" value="Guardar" />
+						</div>
+
+
+
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<!--/Formulario-->
+
+		<footer th:replace="plantilla/template :: footer"> </footer>
+
+
+	</body>
+
+	</html>

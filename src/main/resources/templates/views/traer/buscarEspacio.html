@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<htm>
+	<html xmlns:th="http://www.thymeleaf.org">
+
+	<head th:replace="plantilla/template :: head">
+	</head>
+
+
+	<body class="body-buscar">
+
+
+		<header th:replace="plantilla/template :: header"> </header>
+
+
+		<div class="container mt-5">
+
+			<div class="row justify-content-center">
+
+				<div class="card-header bg-dark text-white">
+
+
+				<form action="#" th:action="@{/espacio/espacioencontrado}" class="form" id="formBuscar" method="post">
+					<h3 style="color: white;">Buscar por fecha, turno y aula:</h3>
+					<div class="col-md-6" style="color:white;">
+						<div class="form-group">
+							<label class="small mb-1" for="inputespacio">Fecha:</label>
+							<input class="form-control py-4" id="inputFecha" type="date" th:name="fecha"
+								th:value="${fecha}" required />
+						</div>
+					</div>
+					<div class="col-md-6" style="color:white;">
+						<div class="form-group">
+							<label class="small mb-1" for="inputespacio">Turno:</label>
+
+							<!-- <input class="form-control py-4" id="inputTurno" type="text" th:name="turno"> -->
+
+
+							<div class="form-check">
+								<input class="form-check-input" type="radio" name="flexRadioDefault" value="t"
+									id="flexRadioDefault1" th:name="turno">>
+								<label class="form-check-label" for="flexRadioDefault1">
+									Turno Tarde
+								</label>
+							</div>
+							<div class="form-check">
+								<input class="form-check-input" type="radio" name="flexRadioDefault" value="m"
+									id="flexRadioDefault2" checked th:name="turno">>
+								<label class="form-check-label" for="flexRadioDefault2">
+									Turno Mañana
+								</label>
+							</div>
+
+						</div>
+						<div class="col-md-6" style="color:white;">
+							<div class="form-group">
+								<label class="small mb-1" for="inputespacio">Aula:</label>
+								<input class="form-control py-4" id="inputTurno" type="text" th:name="idaula"
+									th:value="${idaula}" required />
+							</div>
+						</div>
+						<input class="btn btn-info" type="submit" Value="Buscar" />
+				</form>
+
+
+
+
+			</div>
+			</div>
+		</div>
+
+		<div>
+			<br>
+			<h3 style="color: rgb(255, 255, 255);">LISTADO DE AULAS </h3>
+			<br>
+
+			<table class="table" id="dataTable" width="100%" cellspacing="0">
+
+
+
+				<h3 style="color: rgb(192, 192, 192);">Tradicional</h3>
+
+				<thead>
+					<tr class="table-info">
+						<th>Cod Aula </th>
+						<th>Nº Aula</th>
+						<th>Edificio</th>
+						<th>Cant bancos</th>
+
+
+					</tr>
+				</thead>
+				<tbody bgcolor="grey">
+					<tr th:each="trad:${tradicional}">
+						<td><span th:text="${trad.id}" /></td>
+						<td><span th:text="${trad.numero}" /></td>
+						<td><span th:text="${trad.edificio.edificio}" /></td>
+						<td><span th:text="${trad.cantBancos}" /></td>
+
+
+				</tbody>
+
+				<br>
+			</table>
+
+			<h3 style="color: rgb(192, 192, 192);">Laboratorio</h3>
+			<table class="table" id="dataTable" width="100%" cellspacing="0">
+				<thead>
+					<tr class="table-info">
+						<th>Cod Aula </th>
+						<th>Nº Aula</th>
+						<th>Edificio</th>
+						<th>Cant PC</th>
+
+
+
+
+					</tr>
+				</thead>
+				<tbody bgcolor="grey">
+					<tr th:each="lab:${laboratorio}">
+						<td><span th:text="${lab.id}" /></td>
+						<td><span th:text="${lab.numero}" /></td>
+						<td><span th:text="${lab.edificio.edificio}" /></td>
+						<td><span th:text="${lab.cantPC}" /></td>
+
+
+
+
+				</tbody>
+			</table>
+
+		</div>
+
+		<footer th:replace="plantilla/template :: footer"> </footer>
+
+
+
+
+	</body>
+
+	</html>

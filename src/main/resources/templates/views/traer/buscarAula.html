@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<htm>
+    <html xmlns:th="http://www.thymeleaf.org">
+
+    <head th:replace="plantilla/template :: head">
+    </head>
+
+
+    <body class="body-buscar">
+
+
+        <header th:replace="plantilla/template :: header"> </header>
+
+
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+
+				<div class="card-header bg-dark text-white">
+
+
+                <form action="#" th:action="@{/views/traer/aulaxid}" class="form" id="formBuscar" method="post">
+                    <h3 style="color: white;">Buscar por id:</h3>
+                    <div class="col-md-6" style="color:white;">
+                        <div class="form-group">
+                            <label class="small mb-1" for="inputaula">Aula id:</label>
+                            <input class="form-control py-4" id="inputLastName" type="text" th:name="idabuscar"
+                                th:value="${idabuscar}" required />
+                        </div>
+                    </div>
+                    <input class="btn btn-info" type="submit" Value="Buscar" />
+                </form>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+        <footer th:replace="plantilla/template :: footer"> </footer>
+
+
+
+
+    </body>
+
+    </html>

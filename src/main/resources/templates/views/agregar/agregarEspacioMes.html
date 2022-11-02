@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<htm>
+	<html xmlns:th="http://www.thymeleaf.org">
+
+	<head th:replace="plantilla/template :: head">
+	</head>
+
+
+	<body class="body-generic">
+
+
+		<header th:replace="plantilla/template :: header"> </header>
+
+
+		<!--Formulario-->
+		<div class="container">
+			<div class="card bg-light">
+				<div class="card-header bg-dark text-white" th:text=${titulo}></div>
+				<div class="card-body">
+					<form th:action="@{/espacio/guardarmes}" th:object="${espacio}" method="post">
+						<div class="form-group row">
+
+							<input type="hidden" th:field="*{id}">
+							
+							<input type="hidden" th:field="*{libre}" value="true">
+							
+							<br>
+							
+							<label class="col-md-2" for="fecha">Mes:</label>
+
+
+
+
+							<input type="date" th:field="*{fecha}" class="form-control form-control-sm col-md-6"
+								id="fecha">
+							<small class="form-text text-danger" th:if="${#fields.hasErrors('fecha')}"
+								th:errors="*{fecha}">
+							</small>
+						</div>
+
+						<div class="form-group row">
+
+							<label class="col-md-2" for="tipo_documento">Turno:</label>
+
+
+							<select class="form-control form-control-sm col-md-6" th:field="*{turno}" id="turno">
+								<option value="m">Mañana</option>
+								<option value="t">Tarde</option>
+							</select>
+
+						</div>
+
+				
+
+
+
+						<div class="form-group row">
+							<label class="col-md-2" for="role">Aula:</label>
+							<select type="text" th:field="*{aula}" class="form-control form-control-sm col-md-6"
+								id="nombre">
+
+								<option th:each="a:${listaAula}" th:value="${a.id}">
+									<td><span>| Cod Aula: </td>
+									<td><span th:text="${a.id}"> </td>
+									<td><span> | </td>
+									<td><span th:text="${a.edificio.edificio}" /></td>
+									<td><span>- Aula nº </td>
+									<td><span th:text="${a.numero}" /></td>
+
+								</option>
+
+							</select>
+
+						</div>
+
+						<div class="card-footer bg-dark">
+							<input type="submit" class="btn btn-primary btn-sm" value="Guardar" />
+						</div>
+
+
+
+					</form>
+
+
+
+				</div>
+
+
+
+			</div>
+
+			<h3 style="color: rgb(255, 255, 255);">LISTADO DE AULAS </h3>
+			<br>
+
+
+			<table class="table" id="dataTable" width="100%" cellspacing="0">
+
+
+
+				<h3 style="color: rgb(192, 192, 192);">Tradicional</h3>
+
+				<thead>
+					<tr class="table-info">
+						<th>Cod Aula </th>
+						<th>Nº Aula</th>
+						<th>Edificio</th>
+						<th>Cantidad de bancos</th>
+						<th>Pizarron</th>
+						<th>Proyector</th>
+
+					</tr>
+				</thead>
+				<tbody bgcolor="grey">
+					<tr th:each="trad:${tradicional}">
+						<td><span th:text="${trad.id}" /></td>
+						<td><span th:text="${trad.numero}" /></td>
+						<td><span th:text="${trad.edificio.edificio}" /></td>
+						<td><span th:text="${trad.cantBancos}" /></td>
+						<td><span th:text="${trad.pizarron}" /></td>
+						<td><span th:text="${trad.tieneProyector}" /></td>
+
+				</tbody>
+
+				<br>
+			</table>
+
+			<h3 style="color: rgb(192, 192, 192);">Laboratorio</h3>
+			<table class="table" id="dataTable" width="100%" cellspacing="0">
+				<thead>
+					<tr class="table-info">
+						<th>Cod Aula </th>
+						<th>Nº Aula</th>
+						<th>Edificio</th>
+						<th>Cantidad de PC</th>
+						<th>Cantidad de sillas</th>
+
+
+
+					</tr>
+				</thead>
+				<tbody bgcolor="grey">
+					<tr th:each="lab:${laboratorio}">
+						<td><span th:text="${lab.id}" /></td>
+						<td><span th:text="${lab.numero}" /></td>
+						<td><span th:text="${lab.edificio.edificio}" /></td>
+						<td><span th:text="${lab.cantPC}" /></td>
+						<td><span th:text="${lab.cantSillas}" /></td>
+
+
+
+				</tbody>
+			</table>
+
+		</div>
+
+
+
+
+		<!--/Formulario-->
+
+		<footer th:replace="plantilla/template :: footer"> </footer>
+
+
+	</body>
+
+	</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<htm>
+	<html xmlns:th="http://www.thymeleaf.org">
+
+	<head th:replace="plantilla/template :: head">
+	</head>
+
+
+	<body class="body-generic">
+
+
+		<header th:replace="plantilla/template :: header"> </header>
+
+
+		<!--Formulario-->
+		<div class="container">
+			<div class="card bg-light">
+				<div class="card-header bg-dark text-white"></div>
+				<div class="card-body">
+
+					<form th:action="@{/espacio/asignado/{id}(id=${idEspacio})}" method="post">
+						<h3 style="color: black;">Buscar pedido por codigo:</h3>
+						<div class="col-md-6" style="color:white;">
+							<div class="form-group">
+								<label class="small mb-1" for="inputaula">Codigo de pedido:</label>
+								<input class="form-control py-4" id="inputLastName" type="text" th:name="idPedido"
+									th:value="${idPedido}" required />
+							</div>
+						</div>
+						<input class="btn btn-info" type="submit" Value="Guardar" />
+
+					</form>
+
+
+
+				</div>
+
+
+
+			</div>
+
+
+		</div>
+
+
+
+
+		<!--/Formulario-->
+
+		<footer th:replace="plantilla/template :: footer"> </footer>
+
+
+	</body>
+
+	</html>
